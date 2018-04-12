@@ -1,0 +1,45 @@
+
+Voice communication Part
+
+Voice call is the independent part in our program. We use fork to create a
+background process to execute the voice call and the client can end the voice
+at any time their want.
+
+Voice call is written in C/C++.  It uses alsa to access the sound card, and libopus to
+compress the audio stream. In order to compile parole you need:
+  
+  1) gcc / g++
+  2) libasound
+  3) libopus
+  4) libogg
+
+Under  Ubuntu all the dependencies, except libopus, should be satisfied by
+installing the following packages:
+
+build-essential libasound2-dev libogg-dev
+
+To build libopus from source you can run the following commands:
+
+$ mkdir src
+$ cd src
+$ wget http://downloads.xiph.org/releases/opus/opus-1.0.2.tar.gz
+$ tar xvzf opus-1.0.2.tar.gz
+$ cd opus-1.0.2/
+$ ./configure
+$ make
+$ sudo make install
+$ sudo ldconfig
+# you can later uninstall with:
+#$ sudo make uninstall
+
+Once the dependencies are satisfied, you can compile the program simply with:
+
+$ make
+
+then the executable voice call program will be put in the place where the
+client can use.  After the call coming the listener will accept the call
+automatically. To make things easier, we have used the opensource codes on line
+for the voice call. We only change it a little to satisfied our own purpose. 
+
+The original code is on the website: http://holdenc.altervista.org/parole/index.html
+
